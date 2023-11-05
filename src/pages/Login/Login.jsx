@@ -1,39 +1,49 @@
-import { Link } from 'react-router-dom';
+
+import { Link, useLocation, useNavigate, } from 'react-router-dom';
 import img from '../../assets/images/login/login.svg'
 import { AiFillFacebook, AiFillInstagram } from 'react-icons/Ai';
 import { FcGoogle } from 'react-icons/fc';
-import { useContext } from 'react';
-import { AuthContext } from '../../provider/AuthProvider';
-
+import UseAuth from '../../hooks/UseAuth';
+// import { useContext } from 'react';
+// import { AuthContext } from '../../provider/AuthProvider';
 
 const Login = () => {
-    const {signIn,signInWithGoogle}= useContext(AuthContext);
+    // const { signIn, signInWithGoogle } = useContext(AuthContext);
+    const {signIn,signInWithGoogle}= UseAuth();
+    
+    const location = useLocation();
+    console.log(location.state);
+    const navigate = useNavigate();
 
-
-    const handleLogin = e =>{
+    const handleLogin = e => {
         e.preventDefault();
-        const form =e.target;
-        const email =form.email.value;
-        const password =form.password.value;
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
         console.log(email, password);
 
-        signIn(email,password)
-        .then(result =>{
-         alert('login success')
-            const user =result.user;
-            console.log(user);
-        })
-        .catch(error => console.log(error))
-        
+        signIn(email, password)
+            .then(result => {
+                alert('login success')
+                const loggedInUser = result.user;
+                console.log(loggedInUser);
+
+                // e.target.reset();
+                navigate(location?.state ? location?.state : '/',)
+
+            })
+            .catch(error => console.log(error))
 
     }
-    const handleGoogleSignIn=()=>{
+    const handleGoogleSignIn = () => {
         signInWithGoogle()
-        .then(result =>{
-            console.log(result.user)
+            .then(result => {
+                console.log(result.user);
+                navigate(location?.state ? location.state : '/');
 
-        })
-        .catch(error =>console.log(error.message))
+
+            })
+            .catch(error => console.log(error.message))
     }
     return (
         <div className="hero min-h-screen bg-base-200">
@@ -44,7 +54,7 @@ const Login = () => {
 
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
 
-                    <form onSubmit={handleLogin}className="card-body">
+                    <form onSubmit={handleLogin} className="card-body">
                         <h2 className='text-2xl font-bold text-center'> Sign in</h2>
                         <div className="form-control">
                             <label className="label">
@@ -62,7 +72,7 @@ const Login = () => {
                             </label>
                         </div>
                         <div className="form-control mt-6">
-                            
+
                             <input className="btn bg-[#FF3811] text-white" type="submit" value="Sign in" />
                         </div>
                         <div className='text-center'>
