@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { AiOutlineArrowRight } from 'react-icons/Ai';
+
 import { Link } from 'react-router-dom';
 
 const ServiceCard = ({service}) => {
@@ -20,7 +20,7 @@ const ServiceCard = ({service}) => {
 
                 <div className="flex justify-between">
                     <Link to ={`checkout/${_id}`} > <button className='btn text-white bg-[#FF3811]'>Book now</button></Link>
-                    <button className="btn text-orange-500 font-bold "><AiOutlineArrowRight/></button>
+                    <button className="btn text-orange-500 font-bold ">arrow icon</button>
                 </div>
             </div>
         </div>

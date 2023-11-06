@@ -1,9 +1,9 @@
 
 import { Link, useLocation, useNavigate, } from 'react-router-dom';
-import img from '../../assets/images/login/login.svg'
-import { AiFillFacebook, AiFillInstagram } from 'react-icons/Ai';
+import { AiFillFacebook, AiFillInstagram } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import UseAuth from '../../hooks/UseAuth';
+import swal from 'sweetalert';
 // import { useContext } from 'react';
 // import { AuthContext } from '../../provider/AuthProvider';
 
@@ -24,7 +24,7 @@ const Login = () => {
 
         signIn(email, password)
             .then(result => {
-                alert('login success')
+                swal('login success')
                 const loggedInUser = result.user;
                 console.log(loggedInUser);
 
@@ -49,7 +49,8 @@ const Login = () => {
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row ">
                 <div className="text-center w-1/2 mr-14 lg:text-left">
-                    <img src={img} alt="" />
+                    {/* <img src={img} alt="" /> */}
+                    <img src="https://i.postimg.cc/90d7kVJ2/Mobile-login-amico-1.png" alt="" />
                 </div>
 
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -73,7 +74,7 @@ const Login = () => {
                         </div>
                         <div className="form-control mt-6">
 
-                            <input className="btn bg-[#FF3811] text-white" type="submit" value="Sign in" />
+                            <input className="btn bg-[#bf472f] text-white" type="submit" value="Sign in" />
                         </div>
                         <div className='text-center'>
                             <p>Or Sign In with</p>
@@ -83,7 +84,7 @@ const Login = () => {
                                 <Link><AiFillInstagram /> </Link>
                             </div>
                             <div className='mt-3'>
-                                <p >New to Car Doctors? <Link to="/signup" className='text-orange-500 font-bold '>Sign up</Link></p>
+                                <p >New here? <Link to="/signup" className='text-orange-500 font-bold '>Sign up</Link></p>
                             </div>
                         </div>
                     </form>

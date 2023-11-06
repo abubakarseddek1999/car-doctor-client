@@ -6,12 +6,14 @@ import SignUp from "../pages/signUp/SignUp";
 import CheckOut from "../pages/CheckOut/CheckOut";
 import Bookings from "../pages/Bookings/Bookings";
 import PrivetRoute from "./privetRoute";
+import NotFound from "../pages/Errorpage/NotFound";
 
 
 const router = createBrowserRouter([
     {
       path: "/",
       element: <Main></Main>,
+      errorElement: <NotFound></NotFound>,
       children:[
         {
             path:'/',
